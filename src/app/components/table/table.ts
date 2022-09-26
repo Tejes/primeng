@@ -1912,8 +1912,8 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         DomHandler.removeClass(this.containerViewChild.nativeElement, 'p-unselectable-text');
     }
 
-    resizeTableCells(newColumnWidth, nextColumnWidth) {
-        let colIndex = DomHandler.index(this.resizeColumnElement);
+    resizeTableCells(newColumnWidth?, nextColumnWidth?) {
+        let colIndex = newColumnWidth ? DomHandler.index(this.resizeColumnElement) : -1;
         let widths = [];
         const tableHead = DomHandler.findSingle(this.containerViewChild.nativeElement, '.p-datatable-thead');
         let headers = DomHandler.find(tableHead, 'tr > th');
