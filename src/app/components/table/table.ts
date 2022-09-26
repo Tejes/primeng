@@ -1913,13 +1913,14 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
     }
 
     resizeTableCells(newColumnWidth?, nextColumnWidth?) {
+        this.destroyStyleElement();
+
         let colIndex = newColumnWidth ? DomHandler.index(this.resizeColumnElement) : -1;
         let widths = [];
         const tableHead = DomHandler.findSingle(this.containerViewChild.nativeElement, '.p-datatable-thead');
-        let headers = DomHandler.find(tableHead, 'tr > th');
+        let headers = DomHandler.find(tableHead, 'tr:first-child > th');
         headers.forEach(header => widths.push(DomHandler.getOuterWidth(header)));
 
-        this.destroyStyleElement();
         this.createStyleElement();
 
         let innerHTML = '';
